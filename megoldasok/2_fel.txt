@@ -1,0 +1,47 @@
+2. Bizonyítsa be, hogy ha 𝑓(𝑛)=𝑂(𝑔(𝑛)) és 𝑔(𝑛)=𝑂(ℎ(𝑛)) akkor 𝑓(𝑛)=
+ 𝑂(ℎ(𝑛)).
+
+Legyenek G , H és X ítéletváltozók, ahol
+G -->   𝑓(𝑛)=𝑂(𝑔(𝑛))
+H -->  𝑔(𝑛)=𝑂(ℎ(𝑛))
+X -->  𝑓(𝑛)=𝑂(ℎ(𝑛))
+
+8esetünk van
+#1 Ha G hamis és H hamis akkor X hamis
+--> az állítás igaz lesz hiszen hamis feltételből indulunk, csak igaz lehet
+
+#2-6ugyan ez igaz bármilyen kombinációra ahol H vagy G hamis
+ ((Hh, Gh, Xi),(Hi, Gh, Xh),(Hi, Gh, Xi), (Hh, Gi, Xh), (Hh, Gi, Xi))
+
+#7 Ha H igaz és G igaz akkor X igaz
+f(n) függvény értéke annyi, amennyi g(n)-nek a futásideje
+g(n) függvény értéke annyi, amennyi h(n)-nek a futásideje
+
+a)
+f(n) = O(g(n))--> ekkor tudjuk hogy bármely c1 pozitív valós szám esetén:
+f(n) <= c1*g(n) , ahol n > 0
+
+b)
+Továbbá bármely c2 pozitív valós szám esetén:
+g(n) <= c2*h(n) , ahol n > 0
+
+c)
+-Ha a) minden tagját leosztjuk c1-el
+f(n) <= c1*g(n) ---> f(n)/c1 <= g(n)
+
+d)
+-helyettesítsük a) bal lévő g(n)-t a b) egyenletbe
+f(n)/c1 <= c2*h(n)
+
+e)
+- szorozzuk be a d) egyenletet c1-el
+f(n) <= c1*c2*h(n)
+
+f)
+-ez azt jelenti, hogy:
+f(n) = O(h(n))
+
+
+# Ha G igaz H Igaz  és X hamis
+Ez az állítás tényleg hamis, mert az előbb beláttuk hogy:
+f(n) = O(h(n)) , tehát az X mindenképp igaz ha G és H is igaz
