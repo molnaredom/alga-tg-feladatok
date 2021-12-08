@@ -19,7 +19,6 @@ for global_n in range(1,21):
     szum = 0
     while True:
         tomb = [random.randint(0, global_n - 1) for i in range(global_n)]
-        # print("tomb=" ,tomb)
 
         keresett_elem = tomb[random.randint(0, global_n - 1)]
         # print("keresett elem =", keresett_elem)

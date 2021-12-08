@@ -1,5 +1,4 @@
-2. Bizonyítsa be, hogy ha 𝑓(𝑛)=𝑂(𝑔(𝑛)) és 𝑔(𝑛)=𝑂(ℎ(𝑛)) akkor 𝑓(𝑛)=
- 𝑂(ℎ(𝑛)).
+2. Bizonyítsa be, hogy ha 𝑓(𝑛)=𝑂(𝑔(𝑛)) és 𝑔(𝑛)=𝑂(ℎ(𝑛)) akkor 𝑓(𝑛)=𝑂(ℎ(𝑛)).
 
 Legyenek G , H és X ítéletváltozók, ahol
 G -->   𝑓(𝑛)=𝑂(𝑔(𝑛))
@@ -31,11 +30,15 @@ f(n) <= c1*g(n) ---> f(n)/c1 <= g(n)
 
 d)
 -helyettesítsük a) bal lévő g(n)-t a b) egyenletbe
-f(n)/c1 <= c2*h(n)
+    a) f(n) <= c1*g(n) = f(n)/c1 <= g(n)
+    b) g(n) <= c2*h(n)
+        -->f(n)/c1 <= c2*h(n)
 
 e)
 - szorozzuk be a d) egyenletet c1-el
 f(n) <= c1*c2*h(n)
+
+c1*c2*h(n) = O(h(n))
 
 f)
 -ez azt jelenti, hogy:

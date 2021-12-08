@@ -1,10 +1,10 @@
 # Python3 code to find minimum steps to reach
 # to specific cell in minimum moves by Knight
 class Mezo:
-    def __init__(self, x, y, dist):
+    def __init__(self, x, y, tav):
         self.x = x
         self.y = y
-        self.tavolsaga = dist
+        self.tavolsaga = tav
 
 
 def teruleten_belul_van_e(x, y, tablameret):
@@ -13,8 +13,6 @@ def teruleten_belul_van_e(x, y, tablameret):
     return False
 
 
-# Method returns minimum step to reach
-# target position
 def min_huszarlepes(huszar_pozicioja, cel_pozicio, tabla_meret):
     lepes_lehetosegek = [[2, 1], [2, -1], [-2, 1], [-2, -1], [1, 2], [-1, 2], [1, -2], [-1, -2]]
 
