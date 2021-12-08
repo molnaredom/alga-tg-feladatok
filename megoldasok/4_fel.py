@@ -1,71 +1,50 @@
 # Python3 code to find minimum steps to reach
 # to specific cell in minimum moves by Knight
-class cell:
-
-    def __init__(self, x=0, y=0, dist=0):
+class Mezo:
+    def __init__(self, x, y, dist):
         self.x = x
         self.y = y
-        self.dist = dist
+        self.tavolsaga = dist
 
 
-# checks whether given position is
-# inside the board
-def isInside(x, y, N):
-    if (x >= 1 and x <= N and
-            y >= 1 and y <= N):
+def teruleten_belul_van_e(x, y, tablameret):
+    if 1 <= x <= tablameret and 1 <= y <= tablameret:
         return True
     return False
 
 
 # Method returns minimum step to reach
 # target position
-def minimum_eleresi_lepes_huszarral(indulasi_pozicio, erkezesi_pozicio):
-    akt_huszar_allas = indulasi_pozicio
-    # all possible movments for the knight
-    dx = [2, 2, -2, -2, 1, 1, -1, -1]
-    dy = [1, -1, 1, -1, 2, -2, 2, -2]
+def min_huszarlepes(huszar_pozicioja, cel_pozicio, tabla_meret):
+    lepes_lehetosegek = [[2, 1], [2, -1], [-2, 1], [-2, -1], [1, 2], [-1, 2], [1, -2], [-1, -2]]
 
-    # az aktualis poziciot rogton bele is tesszük
-    eddigi_lepesek_tomb = [{"cella_x": akt_huszar_allas["x"], "cella_y":akt_huszar_allas["y"], "tavolsag": 0}]
+    mar_latogatott_helyek_listaja = [Mezo(huszar_pozicioja[0], huszar_pozicioja[1], 0)]
 
-    # make all cell unvisited
-    visited = [[False for i in range(9)]
-               for j in range(9)]
+    tabla_adott_pozicioja_volt_e_vizsgalva = []
+    for i in range(tabla_meret + 1):
+        tabla_adott_pozicioja_volt_e_vizsgalva.append([False for _ in range(tabla_meret + 1)])
 
-    # visit starting state
-    visited[akt_huszar_allas["x"]][akt_huszar_allas["y"]] = True
+    tabla_adott_pozicioja_volt_e_vizsgalva[huszar_pozicioja[0]][huszar_pozicioja[1]] = True
 
-    # loop until we have one element in queue
-    while (len(eddigi_lepesek_tomb) > 0):
+    # vegigprobalgatjuk az összes lehetőséget
+    while True:
+        if len(mar_latogatott_helyek_listaja) < 1:
+            return -1
 
-        t = eddigi_lepesek_tomb.pop(0)
+        aktualis_pozicio = mar_latogatott_helyek_listaja.pop(0)
 
-        print(t["tavolsag"])
-        # if current cell is equal to target
-        # cell, return its distance
-        if (t["cella_x"] == erkezesi_pozicio["x"] and
-                t["cella_y"] == erkezesi_pozicio["y"]):
-            print(t["tavolsag"])
-            exit()
+        if aktualis_pozicio.x == cel_pozicio[0] and aktualis_pozicio.y == cel_pozicio[1]:
+            return aktualis_pozicio.tavolsaga
 
-        # iterate for all reachable states
         for i in range(8):
 
-            x = t["cella_x"] + dx[i]
-            y = t["cella_y"] + dy[i]
+            x = aktualis_pozicio.x + lepes_lehetosegek[i][0]
+            y = aktualis_pozicio.y + lepes_lehetosegek[i][1]
 
-            if (isInside(x, y, 8) and not visited[x][y]):
-                visited[x][y] = True
-                eddigi_lepesek_tomb.append({"cella_x": akt_huszar_allas["x"],
-                                       "cella_y":akt_huszar_allas["y"],
-                                       "tavolsag": t["tavolsag"]+1}
-                                      )
+            if teruleten_belul_van_e(x, y, tabla_meret) and not tabla_adott_pozicioja_volt_e_vizsgalva[x][y]:
+                tabla_adott_pozicioja_volt_e_vizsgalva[x][y] = True
+                mar_latogatott_helyek_listaja.append(Mezo(x, y, aktualis_pozicio.tavolsaga + 1))
 
 
-# Driver Code
 if __name__ == '__main__':
-
-    minimum_eleresi_lepes_huszarral(indulasi_pozicio ={"x": 6,"y": 1}, erkezesi_pozicio = {"x": 9,"y": 1})
-
-# This code is contributed by
-# Kaustav kumar Chanda
+    print(min_huszarlepes(huszar_pozicioja=[1, 2], cel_pozicio=[2, 2], tabla_meret=8))
